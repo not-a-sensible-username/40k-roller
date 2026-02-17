@@ -35,7 +35,7 @@ public class Main
         Scanner hitRoll = new Scanner(System.in);
         System.out.println("Hit roll?");
         int upOnHit = hitRoll.nextInt();
-        Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{0, 0}, 0);
+        Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{0, 0});
         uppieHit.Checking();
         int[] success = uppieHit.getSuccess();
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
@@ -43,7 +43,7 @@ public class Main
         Scanner woundRoll = new Scanner(System.in);
         System.out.println("Wound roll?");
         int upOnWound = woundRoll.nextInt();
-        Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0}, 0);
+        Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0});
         uppieWound.Checking();
         success = uppieWound.getSuccess();
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
@@ -56,9 +56,14 @@ public class Main
             Scanner saveRoll = new Scanner(System.in);
             System.out.println("save Roll?");
             int upOnSave = saveRoll.nextInt();
-            Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0}, 0);
+            Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0});
             uppieSave.saveChecking();
             int[] success = uppieSave.getSuccess();
+
+
+            Scanner perDice = new Scanner(System.in);
+            System.out.println("Damage Per Dice?");
+            int damPerDice = perDice.nextInt();
 
             Scanner noPain = new Scanner(System.in);
             System.out.println("Feel No Pain?"); System.out.println("1) yes"); System.out.println("2) no");
@@ -66,15 +71,16 @@ public class Main
             
             if (feelNoPain == 1)
             {
-                Scanner perDice = new Scanner(System.in);
-                System.out.println("Damage Per Dice?");
-                int damPerDice = perDice.nextInt();
-                Uppies uppieNoPain = new Uppies(diceNumber, upOnSave, new int[]{0, 0}, damPerDice);
+                Scanner fNoPain = new Scanner(System.in);
+                System.out.println("FeelNoPain Save?");
+                int FoPain = noPain.nextInt();
+
+                Uppies uppieNoPain = new Uppies(diceNumber, upOnSave, new int[]{FoPain, damPerDice});
                 uppieNoPain.feelNoPain();
-                System.out.println("D:" + damPerDice);
-                
+                success = uppieNoPain.getSuccess();
+                System.out.println("Failed:" + success[0] + "      Total Damage:" + success[1]);
             } else {
-                System.out.println("Failed:" + success[0] + "     six:" + success[1]);
+                System.out.println("Failed:" + success[0] + "      Total Damage:" + success[0] * damPerDice);
             }
         }
     }

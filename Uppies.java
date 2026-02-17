@@ -5,16 +5,15 @@ public class Uppies
     int diceNumber;
     int check;
     int[] success;
-    int damPerDice;
+
     ArrayList<Integer> diceResults;
 
 
-    public Uppies(int diceNumber, int check, int[] success, int damPerDice) 
+    public Uppies(int diceNumber, int check, int[] success) 
     {
         this.diceNumber = diceNumber;
         this.check = check;
         this.success = success;
-        this.damPerDice = damPerDice;
 
         
         Rolling rolling = new Rolling(diceNumber, new ArrayList<>());
@@ -41,51 +40,50 @@ public class Uppies
 
     public int[] saveChecking()
     {
-        int total = diceResults.size();
-     for (int i = 0; i < diceResults.size();  i++) 
-      {
-        if (diceResults.get(i) == 6)
-        {
-            success[1] = success[1] + 1;
-        }
-
-        if (diceResults.get(i) >= check) 
-        {
-            success[0] = success[0] + 1;
-        }
-      }
-      success[0] = total - success[0]; 
-      return success;
-    }
-
-
-    //make an array that takes each dice and puts it into one slot of the array one at a time
-    //roll save against that damage
-    //print an array of dice with the remaining damage left
-    public ArrayList<Integer> feelNoPain()
-    {
-        ArrayList<Integer> finalDamPerDice = new ArrayList<>();
-        ArrayList<Integer> damPerDice = new ArrayList<>();
-    for (int j = 0; j < diceResults.size();  j++) 
-    {
-        for(int k = 0; k < success[0]; k++)
-        finalDamPerDice.add(diceResults.get(j));
-            for (int i = 0; i < finalDamPerDice.size();  i++) 
+        for (int i = 0; i < diceResults.size();  i++) 
             {
-                Rolling rollin = new Rolling(1, new ArrayList<>());
-                rollin.getDice();
-                if (diceResults.get(i) == 6)
+                if (diceResults.get(i) < check) 
                 {
-                   success[1] = success[1] + 1;
-                }
-
-                if (diceResults.get(i) >= check) 
-                {
-                damPerDice.add(diceResults.get(i));
+                success[0] = success[0] + 1;
                 }
             }
+            return success;
     }
-      return damPerDice;
+
+
+    
+    public int[] feelNoPain()
+    {
+        int noPainCheck = success[0];
+        success[0] = 0;
+        for (int i = 0; i < diceResults.size();  i++) 
+        {
+            if (diceResults.get(i) < check) 
+            {
+            success[0] = success[0] + 1;
+            System.out.println(success[0]);
+            }
+            
+        }
+        int diceSaver = success[0]; //4
+        success[0] = success[0] * success[1]; //8
+        System.out.println("div");
+        Rolling rollin = new Rolling(success[0], new ArrayList<>());
+        diceResults = rollin.getDice();
+        int diceAmount = 0;
+        for (int i = 0; i < success[0]; i++) //8
+        {
+            if (diceResults.get(i) >= noPainCheck) //# < 4+
+                {
+                success[0] = success[0] - 1; //14 
+                diceAmount = diceAmount + 1;
+                System.out.println(diceResults.get(i));
+                }
+        }
+        diceSaver = diceSaver - (diceAmount / success[1]);
+        success[1] = success[0]; //2 = 7
+        success[0] = diceSaver; //7 = 4
+        return success;
     }
 
 
