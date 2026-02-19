@@ -31,10 +31,10 @@ public class Uppies
         int ability = success[0];
         success[0] = 0;
 
-//method for sustained hits
-        ArrayList<Integer> newDice = new ArrayList<>(); 
-        int susAmountMod = 0;
+        ArrayList<Integer> newDice = new ArrayList<>();
         int abilitySub = 0;
+//method for sustained hits
+        int susAmountMod = 0;
         if (ability == 6)
         {
             abilitySub = 6;
@@ -52,12 +52,31 @@ public class Uppies
                         susAmount = susAmount + 1; //add one to the amout of sustained dice
                     }
                     susAmount = susAmount * susAmountMod; //sustained amount times the sustained modifieer
-                    Rolling rolling = new Rolling(susAmount, new ArrayList<>()); // rolling the sustained dice
-                    newDice.addAll(rolling.getDice()); //putting the rolled sustained dice in a previously defined list
+                    Rolling rollingSus = new Rolling(susAmount, new ArrayList<>()); // rolling the sustained dice
+                    newDice.addAll(rollingSus.getDice()); //putting the rolled sustained dice in a previously defined list
         }
     }
 
 //end method for sustained hits
+
+//start method for rapid fire
+if (ability == 3)
+    {
+        Scanner rapid = new Scanner(System.in);
+        System.out.println("Rapid Fire modifier?"); //rapid fire modifier 
+        int rapidF = rapid.nextInt();
+
+        Scanner wepCount = new Scanner(System.in);
+        System.out.println("Weapon count?"); //number of weapons being shot
+        int weponCount = wepCount.nextInt();
+
+        int rapidFiredDice = rapidF * weponCount; //number of rapidFireDice 
+
+        Rolling rollingRapid = new Rolling(rapidFiredDice, new ArrayList<>()); // list of all the rapidFireDice
+
+        diceResults.addAll(rollingRapid.getDice()); //adding the reapid fire dice to the base dicelist
+    }
+//end method for rapid fire
 
     // the threshhold for regular checks
     int firstDiceList = diceResults.size(); // count of the first dice list
@@ -68,18 +87,18 @@ public class Uppies
         System.out.print(" " + diceResults.get(i) + " "); //printing dice amount
         if (ability == 1)
         {
-          //  System.out.println("First Dice List:" + firstDiceList); 
-            //System.out.println("Sec Dice List:" + diceResults.size());
             if (firstDiceList < diceResults.size())
             {
                 if (diceResults.get(i) == 6)
                 {
+             // sustained hits keyworkd adder
                     if (abilitySub == 6) 
                         {
                             System.out.print("SUSTAINED!"); //show sustained
                             success[1] = success[1] + 1;
                             firstDiceList = firstDiceList + susAmountMod;
                         }
+             // end sustained hits keyworkd adder 
                 }
             } else {
             if (diceResults.get(i) == 6)
@@ -106,6 +125,8 @@ public class Uppies
                 {
                 success[0] = success[0] + 1;
                 }
+                System.out.print(" " + diceResults.get(i) + " ");
+                System.out.print("");
             }
             return success;
     }
@@ -121,8 +142,8 @@ public class Uppies
             if (diceResults.get(i) < check) 
             {
             success[0] = success[0] + 1;
-            System.out.println(success[0]);
             }
+            System.out.println(diceResults.get(i));
             
         }
         int diceSaver = success[0]; //4

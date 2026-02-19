@@ -30,10 +30,6 @@ public class Main
         if (hitOrSave == 1) 
         {
 
-        //dice amount
-        Scanner howMany = new Scanner(System.in);
-        System.out.println("How many dice?");
-        int diceNumber = howMany.nextInt();
 
         //ability
         Scanner bility = new Scanner(System.in);
@@ -41,9 +37,14 @@ public class Main
         System.out.println("3)Rapid Fire:"); System.out.println("4)Blast:"); System.out.println("5)Hazardus:");
         System.out.println("6)Sustained Hits:");
         int ability = bility.nextInt();
+
+        //dice amount
+        Scanner howMany = new Scanner(System.in);
+        System.out.println("How many dice?");
+        int diceNumber = howMany.nextInt();
+
         Uppies hitType = new Uppies(0, ability, new int[]{0, 0});
         ability = hitType.abilities();
-        System.out.println(ability);
 
         //hit
         Scanner hitRoll = new Scanner(System.in); 
@@ -73,10 +74,6 @@ public class Main
             Scanner saveRoll = new Scanner(System.in);
             System.out.println("save Roll?");
             int upOnSave = saveRoll.nextInt();
-            Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0});
-            uppieSave.saveChecking();
-            int[] success = uppieSave.getSuccess();
-
 
             Scanner perDice = new Scanner(System.in);
             System.out.println("Damage Per Dice?");
@@ -85,7 +82,10 @@ public class Main
             Scanner noPain = new Scanner(System.in);
             System.out.println("Feel No Pain?"); System.out.println("1) yes"); System.out.println("2) no");
             int feelNoPain = noPain.nextInt();
-            
+
+            Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0});
+            uppieSave.saveChecking();
+            int[] success = uppieSave.getSuccess();
             if (feelNoPain == 1)
             {
                 Scanner fNoPain = new Scanner(System.in);
@@ -97,6 +97,7 @@ public class Main
                 success = uppieNoPain.getSuccess();
                 System.out.println("Failed:" + success[0] + "      Total Damage:" + success[1]);
             } else {
+                System.out.println("");
                 System.out.println("Failed:" + success[0] + "      Total Damage:" + success[0] * damPerDice);
             }
         }
