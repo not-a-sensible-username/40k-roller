@@ -158,12 +158,21 @@ if (ability == 3)
                 {
                 success[0] = success[0] - 1; //14 
                 diceAmount = diceAmount + 1;
-                System.out.println(diceResults.get(i));
                 }
+                System.out.println(diceResults.get(i));
         }
         diceSaver = diceSaver - (diceAmount / success[1]);
         success[1] = success[0]; //2 = 7
+        success[0] = 0;
+
+        System.out.println(diceAmount);
+        System.out.println(diceAmount);
+        System.out.println(diceAmount);
+        System.out.println(diceAmount);
+        System.out.println(diceAmount);
+        
         success[0] = diceSaver; //7 = 4
+
         return success;
     }
 

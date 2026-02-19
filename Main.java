@@ -89,6 +89,7 @@ public class Main
             if (feelNoPain == 1)
             {
                 Scanner fNoPain = new Scanner(System.in);
+                System.out.println("");
                 System.out.println("FeelNoPain Save?");
                 int FoPain = noPain.nextInt();
 
