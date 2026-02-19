@@ -20,7 +20,9 @@ public class Main
 {
     public static void main(String[] args) 
     {
-
+     int continuous = 0;
+     while (continuous == 0) 
+     {
         Scanner sixOrSeven = new Scanner(System.in);
         System.out.println("1) Hit"); System.out.println("or"); System.out.println("2) save");
         int hitOrSave = sixOrSeven.nextInt();
@@ -32,12 +34,22 @@ public class Main
         System.out.println("How many dice?");
         int diceNumber = howMany.nextInt();
 
+        Scanner bility = new Scanner(System.in);
+        System.out.println("Active Ability:"); System.out.println("1)'Nutin?'"); System.out.println("2)Lethal Hits:"); 
+        System.out.println("3)Rapid Fire:"); System.out.println("4)Blast:"); System.out.println("5)Hazardus:");
+        System.out.println("6)Sustained Hits:");
+        int ability = bility.nextInt();
+        Uppies hitType = new Uppies(0, ability, new int[]{0, 0});
+        ability = hitType.abilities();
+        System.out.println(ability);
+
         Scanner hitRoll = new Scanner(System.in);
         System.out.println("Hit roll?");
         int upOnHit = hitRoll.nextInt();
-        Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{0, 0});
+        Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{ability, 0});
         uppieHit.Checking();
         int[] success = uppieHit.getSuccess();
+        System.out.println("");
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
 
         Scanner woundRoll = new Scanner(System.in);
@@ -46,6 +58,7 @@ public class Main
         Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0});
         uppieWound.Checking();
         success = uppieWound.getSuccess();
+        System.out.println("");
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
         
         } else {
@@ -83,5 +96,6 @@ public class Main
                 System.out.println("Failed:" + success[0] + "      Total Damage:" + success[0] * damPerDice);
             }
         }
+     }
     }
 }

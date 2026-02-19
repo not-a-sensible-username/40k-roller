@@ -14,27 +14,56 @@ public class Uppies
         this.diceNumber = diceNumber;
         this.check = check;
         this.success = success;
-
         
+
         Rolling rolling = new Rolling(diceNumber, new ArrayList<>());
         diceResults = rolling.getDice();
+    }
 
+    public int abilities()
+    {
+        return check;
     }
 
     public int[] Checking()
     {
-     for (int i = 0; i < diceResults.size();  i++) 
-      {
-        if (diceResults.get(i) == 6)
+        int ability = success[0];
+        success[0] = 0;
+
+        //method for sustained hits
+    for (int i = 0; i < diceResults.size();  i++) 
+    {
+        System.out.print(" " + diceResults.get(i) + " ");
+        if (ability == 6)
         {
-            success[1] = success[1] + 1;
+            int susAmount = 0;
+                if (diceResults.get(i) == 6)
+                    {
+                        System.out.print("SUSTAINED!");
+                        susAmount = susAmount + 1;
+                    }
+                    Rolling rolling = new Rolling(susAmount, new ArrayList<>());
+                    ArrayList<Integer> newDice = rolling.getDice();
+                    diceResults.addAll(newDice);
         }
+    }
+    ability = 1;
+    for (int i = 0; i < diceResults.size();  i++) 
+    {
+        
+            if (ability == 1)
+            {
+                if (diceResults.get(i) == 6)
+                {
+                    success[1] = success[1] + 1;
+                }
+            }
 
         if (diceResults.get(i) >= check) 
         {
             success[0] = success[0] + 1;
         }
-      }
+    }
       return success;
     }
 
