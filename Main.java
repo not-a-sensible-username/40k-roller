@@ -30,10 +30,12 @@ public class Main
         if (hitOrSave == 1) 
         {
 
+        //dice amount
         Scanner howMany = new Scanner(System.in);
         System.out.println("How many dice?");
         int diceNumber = howMany.nextInt();
 
+        //ability
         Scanner bility = new Scanner(System.in);
         System.out.println("Active Ability:"); System.out.println("1)'Nutin?'"); System.out.println("2)Lethal Hits:"); 
         System.out.println("3)Rapid Fire:"); System.out.println("4)Blast:"); System.out.println("5)Hazardus:");
@@ -43,7 +45,8 @@ public class Main
         ability = hitType.abilities();
         System.out.println(ability);
 
-        Scanner hitRoll = new Scanner(System.in);
+        //hit
+        Scanner hitRoll = new Scanner(System.in); 
         System.out.println("Hit roll?");
         int upOnHit = hitRoll.nextInt();
         Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{ability, 0});
@@ -52,6 +55,7 @@ public class Main
         System.out.println("");
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
 
+        //wound
         Scanner woundRoll = new Scanner(System.in);
         System.out.println("Wound roll?");
         int upOnWound = woundRoll.nextInt();

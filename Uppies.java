@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Uppies 
 {
@@ -31,30 +32,41 @@ public class Uppies
         success[0] = 0;
 
         //method for sustained hits
-    for (int i = 0; i < diceResults.size();  i++) 
-    {
-        System.out.print(" " + diceResults.get(i) + " ");
+        ArrayList<Integer> newDice = new ArrayList<>(); 
+        int susAmountMod = 0;
         if (ability == 6)
         {
-            int susAmount = 0;
-                if (diceResults.get(i) == 6)
+            Scanner howManySus = new Scanner(System.in); //
+            System.out.println("Sustained hits modifier?");  // asking sustained modifier
+            susAmountMod = howManySus.nextInt();    //
+        }
+    for (int i = 0; i < diceResults.size();  i++) //going through dice amount
+    {
+        if (ability == 6) //if ability is sustained
+        {
+            int susAmount = 0; //making the sustained amount variable
+                if (diceResults.get(i) == 6) //if a dice in the amount of dice rolled a six
                     {
-                        System.out.print("SUSTAINED!");
-                        susAmount = susAmount + 1;
+                        susAmount = susAmount + 1; //add one to the amout of sustained dice
                     }
-                    Rolling rolling = new Rolling(susAmount, new ArrayList<>());
-                    ArrayList<Integer> newDice = rolling.getDice();
-                    diceResults.addAll(newDice);
+                    susAmount = susAmount * susAmountMod; //sustained amount times the sustained modifieer
+                    Rolling rolling = new Rolling(susAmount, new ArrayList<>()); // rolling the sustained dice
+                    newDice.addAll(rolling.getDice()); //putting the rolled sustained dice in a previously defined list
         }
     }
+
+    // the threshhold for regular checks
+    diceResults.addAll(newDice); //adding sustained dice to the amount of regular dice
     ability = 1;
     for (int i = 0; i < diceResults.size();  i++) 
     {
+        System.out.print(" " + diceResults.get(i) + " "); //printing dice amount
         
             if (ability == 1)
             {
                 if (diceResults.get(i) == 6)
                 {
+                    System.out.print("SUSTAINED!"); //show sustained
                     success[1] = success[1] + 1;
                 }
             }
