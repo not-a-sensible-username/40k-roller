@@ -44,10 +44,25 @@ public class Uppies
             } 
         //lethal hits
 
+
 //method for sustained hits
         int AmountMod = 0;
         if (ability != 1)
         {
+
+            //method for blast
+        int blastNumber = 0;
+        ArrayList<Integer> newDiceBlast = new ArrayList<>();
+        if (ability == 4) {
+        Scanner howMany = new Scanner(System.in);
+        System.out.println("How many models in enemy unit?");
+        blastNumber = howMany.nextInt() / 5; //number of enemy models in enemy unit
+        Rolling rolling = new Rolling(blastNumber, new ArrayList<>()); //rolls number of dice equal to blast
+        newDiceBlast.addAll(rolling.getDice()); //puts the blast number into a list
+        }
+        diceResults.addAll(newDiceBlast); //adding the blast list into the total rolls
+        //method for blast
+
             if (ability == 6)
                 {
             Scanner howManySus = new Scanner(System.in);      //
