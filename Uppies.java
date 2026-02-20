@@ -44,6 +44,19 @@ public class Uppies
             } 
         //lethal hits
 
+        //method for hazardus
+        boolean hazardus = false;
+        if (ability == 5) 
+            {
+                ArrayList<Integer> hazDie = new ArrayList<>();
+                Rolling rolling = new Rolling(1, new ArrayList<>()); //rolls number of dice equal to blast
+                hazDie.addAll(rolling.getDice()); //puts hazdie into list
+                if (hazDie.get(0) == 1) 
+                    {
+                        hazardus = true;
+                    }
+
+            }
 
 //method for sustained hits
         int AmountMod = 0;
@@ -53,6 +66,7 @@ public class Uppies
             //method for blast
         int blastNumber = 0;
         ArrayList<Integer> newDiceBlast = new ArrayList<>();
+
         if (ability == 4) {
         Scanner howMany = new Scanner(System.in);
         System.out.println("How many models in enemy unit?");
@@ -60,9 +74,11 @@ public class Uppies
         Rolling rolling = new Rolling(blastNumber, new ArrayList<>()); //rolls number of dice equal to blast
         newDiceBlast.addAll(rolling.getDice()); //puts the blast number into a list
         }
+
         diceResults.addAll(newDiceBlast); //adding the blast list into the total rolls
         //method for blast
 
+        // 
             if (ability == 6)
                 {
             Scanner howManySus = new Scanner(System.in);      //
@@ -158,6 +174,12 @@ if (ability == 3)
             System.out.println("Lethal hits: " + lethals);
         }
     //end print lethal hits
+
+    //print hazardus 
+        System.out.println("");
+        System.out.println("");
+        System.out.println("Pass Hazard save? " + hazardus);
+    //print hazardus
     success[0] = success[0] + lethals;
 
       return success;
