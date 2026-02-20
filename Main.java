@@ -30,7 +30,6 @@ public class Main
         if (hitOrSave == 1) 
         {
 
-
         //ability
         Scanner bility = new Scanner(System.in);
         System.out.println("Active Ability:"); System.out.println("1)'Nutin?'"); System.out.println("2)Lethal Hits:"); 
@@ -57,6 +56,18 @@ public class Main
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
 
         //wound
+        if (ability == 2) //if lethal hits
+            {
+                Scanner woundRoll = new Scanner(System.in);
+                System.out.println("Wound roll?");
+                int upOnWound = woundRoll.nextInt();
+                Uppies uppieWound = new Uppies(success[0] - success[1], upOnWound, new int[]{0, success[1]});
+                uppieWound.Checking();
+                success = uppieWound.getSuccess();
+                System.out.println("");
+                System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
+            }       //end of if thetal hits
+            else {
         Scanner woundRoll = new Scanner(System.in);
         System.out.println("Wound roll?");
         int upOnWound = woundRoll.nextInt();
@@ -65,6 +76,7 @@ public class Main
         success = uppieWound.getSuccess();
         System.out.println("");
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
+            }
         
         } else {
             Scanner howMany = new Scanner(System.in);

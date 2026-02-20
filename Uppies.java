@@ -28,34 +28,51 @@ public class Uppies
 
     public int[] Checking()
     {
+        
         int ability = success[0];
         success[0] = 0;
 
         ArrayList<Integer> newDice = new ArrayList<>();
         int abilitySub = 0;
+
+        //lethal hits
+        int lethals = success[1];
+        boolean lethalTrue = false;
+        if (success[1] > 0) 
+            {
+                lethalTrue = true; //makes it so that lethals is enabled
+            } 
+        //lethal hits
+
 //method for sustained hits
-        int susAmountMod = 0;
-        if (ability == 6)
+        int AmountMod = 0;
+        if (ability != 1)
         {
-            abilitySub = 6;
-            Scanner howManySus = new Scanner(System.in); //
-            System.out.println("Sustained hits modifier?");  // asking sustained modifier
-            susAmountMod = howManySus.nextInt();    //
+            if (ability == 6)
+                {
+            Scanner howManySus = new Scanner(System.in);      //
+            System.out.println("Sustained hits modifier?");  //asking sustained modifier
+            AmountMod = howManySus.nextInt();               //
+                }
         }
-    for (int i = 0; i < diceResults.size();  i++) //going through dice amount
+    if (ability != 1)
+{
+    int Amount = 0; //making the "six" amount variable
+   for (int i = 0; i < diceResults.size();  i++) //going through dice amount
     {
-        if (ability == 6) //if ability is sustained
-        {
-                int susAmount = 0; //making the sustained amount variable
                 if (diceResults.get(i) == 6) //if a dice in the amount of dice rolled a six
                     {
-                        susAmount = susAmount + 1; //add one to the amout of sustained dice
+                        Amount = Amount + 1; //add one to the amout of "six" dice
                     }
-                    susAmount = susAmount * susAmountMod; //sustained amount times the sustained modifieer
-                    Rolling rollingSus = new Rolling(susAmount, new ArrayList<>()); // rolling the sustained dice
+            if (ability == 6) //if ability is sustained
+        {
+                    Amount = Amount * AmountMod; //sustained amount times the sustained modifieer
+                    Rolling rollingSus = new Rolling(Amount, new ArrayList<>()); // rolling the sustained dice
                     newDice.addAll(rollingSus.getDice()); //putting the rolled sustained dice in a previously defined list
+                    abilitySub = 6;
         }
     }
+}
 
 //end method for sustained hits
 
@@ -82,6 +99,7 @@ if (ability == 3)
     int firstDiceList = diceResults.size(); // count of the first dice list
     diceResults.addAll(newDice); //adding sustained dice to the amount of regular dice
     ability = 1;
+    success[1] = 0; // resets the six counter so it doesn't count lethal hits as sixes
     for (int i = 0; i < diceResults.size();  i++) 
     {
         System.out.print(" " + diceResults.get(i) + " "); //printing dice amount
@@ -96,7 +114,7 @@ if (ability == 3)
                         {
                             System.out.print("SUSTAINED!"); //show sustained
                             success[1] = success[1] + 1;
-                            firstDiceList = firstDiceList + susAmountMod;
+                            firstDiceList = firstDiceList + AmountMod;
                         }
              // end sustained hits keyworkd adder 
                 }
@@ -105,8 +123,12 @@ if (ability == 3)
                 {
                             success[1] = success[1] + 1;
                 }
+                if (ability == 2) 
+                    {
+                        
+                    }
             }
-
+        
         }
 
         if (diceResults.get(i) >= check) 
@@ -114,6 +136,15 @@ if (ability == 3)
             success[0] = success[0] + 1;
         }
     }
+    //prints lethal hits
+    if (lethalTrue) 
+        {
+            System.out.println("");
+            System.out.println("Lethal hits: " + lethals);
+        }
+    //end print lethal hits
+    success[0] = success[0] + lethals;
+
       return success;
     }
 
@@ -132,51 +163,46 @@ if (ability == 3)
     }
 
 
-    
     public int[] feelNoPain()
     {
+        System.out.print("");
         int noPainCheck = success[0];
         success[0] = 0;
+        System.out.print("T: ");
         for (int i = 0; i < diceResults.size();  i++) 
         {
             if (diceResults.get(i) < check) 
             {
             success[0] = success[0] + 1;
             }
-            System.out.println(diceResults.get(i));
+            System.out.print(" " + diceResults.get(i) + " ");
             
         }
         int diceSaver = success[0]; //4
         success[0] = success[0] * success[1]; //8
-        System.out.println("div");
+        System.out.println("");
         Rolling rollin = new Rolling(success[0], new ArrayList<>());
         diceResults = rollin.getDice();
         int diceAmount = 0;
+        System.out.print("P: ");
         for (int i = 0; i < success[0]; i++) //8
         {
             if (diceResults.get(i) >= noPainCheck) //# < 4+
                 {
                 success[0] = success[0] - 1; //14 
                 diceAmount = diceAmount + 1;
+                System.out.print(" " + diceResults.get(i) + " ");
                 }
-                System.out.println(diceResults.get(i));
         }
+        System.out.println("");
         diceSaver = diceSaver - (diceAmount / success[1]);
+
+        int total = diceAmount + success[0];
+
         success[1] = success[0]; //2 = 7
-        success[0] = 0;
-
-        System.out.println(diceAmount);
-        System.out.println(diceAmount);
-        System.out.println(diceAmount);
-        System.out.println(diceAmount);
-        System.out.println(diceAmount);
-        
         success[0] = diceSaver; //7 = 4
-
         return success;
     }
-
-
     public int[] getSuccess()
     {
         return success;
