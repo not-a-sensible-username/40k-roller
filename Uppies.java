@@ -6,15 +6,16 @@ public class Uppies
     int diceNumber;
     int check;
     int[] success;
-
+    ArrayList<Boolean> choices;
     ArrayList<Integer> diceResults;
 
 
-    public Uppies(int diceNumber, int check, int[] success) 
+    public Uppies(int diceNumber, int check, int[] success, ArrayList<Boolean> choices) 
     {
         this.diceNumber = diceNumber;
         this.check = check;
         this.success = success;
+        this.choices = choices;
         
 
         Rolling rolling = new Rolling(diceNumber, new ArrayList<>());
@@ -29,90 +30,84 @@ public class Uppies
     public int[] Checking()
     {
         
-        int ability = success[0];
+        boolean nutin = choices.get(0);
+        boolean lethal = choices.get(1);
+        boolean rapid = choices.get(2);
+        boolean blast = choices.get(3);
+        boolean hazard = choices.get(4);
+        boolean sustain = choices.get(5);
         success[0] = 0;
 
-        ArrayList<Integer> newDice = new ArrayList<>();
+        ArrayList<Integer> newDiceSus = new ArrayList<>();
         int abilitySub = 0;
 
         //lethal hits
         int lethals = success[1];
-        boolean lethalTrue = false;
         if (success[1] > 0) 
             {
-                lethalTrue = true; //makes it so that lethals is enabled
+                lethal = true; //makes it so that lethals is enabled
             } 
         //lethal hits
 
         //method for hazardus
-        boolean hazardus = false;
-        if (ability == 5) 
+        if (hazard == true) 
             {
                 ArrayList<Integer> hazDie = new ArrayList<>();
                 Rolling rolling = new Rolling(1, new ArrayList<>()); //rolls number of dice equal to blast
                 hazDie.addAll(rolling.getDice()); //puts hazdie into list
                 if (hazDie.get(0) == 1) 
                     {
-                        hazardus = true;
+                        hazard = true;
                     }
 
             }
-
-//method for sustained hits
-        int AmountMod = 0;
-        if (ability != 1)
-        {
 
             //method for blast
         int blastNumber = 0;
         ArrayList<Integer> newDiceBlast = new ArrayList<>();
 
-        if (ability == 4) {
+        if (blast == true) {
         Scanner howMany = new Scanner(System.in);
         System.out.println("How many models in enemy unit?");
         blastNumber = howMany.nextInt() / 5; //number of enemy models in enemy unit
         Rolling rolling = new Rolling(blastNumber, new ArrayList<>()); //rolls number of dice equal to blast
         newDiceBlast.addAll(rolling.getDice()); //puts the blast number into a list
-        }
-
         diceResults.addAll(newDiceBlast); //adding the blast list into the total rolls
+        }
         //method for blast
 
-        // 
-            if (ability == 6)
+        //method for sustained hits
+        int AmountMod = 0;
+            if (sustain == true)
                 {
             Scanner howManySus = new Scanner(System.in);      //
             System.out.println("Sustained hits modifier?");  //asking sustained modifier
             AmountMod = howManySus.nextInt();               //
                 }
-        }
-    if (ability != 1)
-{
-    int Amount = 0; //making the "six" amount variable
+    int AmountSus = 0; //making the "six" amount variable
    for (int i = 0; i < diceResults.size();  i++) //going through dice amount
     {
                 if (diceResults.get(i) == 6) //if a dice in the amount of dice rolled a six
                     {
-                        Amount = Amount + 1; //add one to the amout of "six" dice
+                        AmountSus = AmountSus + 1; //add one to the amout of "six" dice
                     }
-            if (ability == 6) //if ability is sustained
-        {
-                    Amount = Amount * AmountMod; //sustained amount times the sustained modifieer
-                    Rolling rollingSus = new Rolling(Amount, new ArrayList<>()); // rolling the sustained dice
-                    newDice.addAll(rollingSus.getDice()); //putting the rolled sustained dice in a previously defined list
-                    abilitySub = 6;
-        }
     }
-}
+            if (sustain == true) //if ability is sustained
+        {
+                    AmountSus = AmountSus * AmountMod; //sustained amount times the sustained modifieer
+                    Rolling rollingSus = new Rolling(AmountSus, new ArrayList<>()); // rolling the sustained dice
+                    newDiceSus.addAll(rollingSus.getDice()); //putting the rolled sustained dice in a previously defined list
+        }
+    
 
 //end method for sustained hits
 
 //start method for rapid fire
-if (ability == 3)
+if (rapid == true)
     {
-        Scanner rapid = new Scanner(System.in);
+        Scanner rapidd = new Scanner(System.in);
         System.out.println("Rapid Fire modifier?"); //rapid fire modifier 
-        int rapidF = rapid.nextInt();
+        int rapidF = rapidd.nextInt();
 
         Scanner wepCount = new Scanner(System.in);
         System.out.println("Weapon count?"); //number of weapons being shot
@@ -128,20 +123,17 @@ if (ability == 3)
 
     // the threshhold for regular checks
     int firstDiceList = diceResults.size(); // count of the first dice list
-    diceResults.addAll(newDice); //adding sustained dice to the amount of regular dice
-    ability = 1;
+    diceResults.addAll(newDiceSus); //adding sustained dice to the amount of regular dice
     success[1] = 0; // resets the six counter so it doesn't count lethal hits as sixes
     for (int i = 0; i < diceResults.size();  i++) 
     {
         System.out.print(" " + diceResults.get(i) + " "); //printing dice amount
-        if (ability == 1)
-        {
             if (firstDiceList < diceResults.size())
             {
                 if (diceResults.get(i) == 6)
                 {
              // sustained hits keyworkd adder
-                    if (abilitySub == 6) 
+                    if (sustain == true) 
                         {
                             System.out.print("SUSTAINED!"); //show sustained
                             success[1] = success[1] + 1;
@@ -154,13 +146,8 @@ if (ability == 3)
                 {
                             success[1] = success[1] + 1;
                 }
-                if (ability == 2) 
-                    {
-                        
-                    }
             }
         
-        }
 
         if (diceResults.get(i) >= check) 
         {
@@ -168,7 +155,7 @@ if (ability == 3)
         }
     }
     //prints lethal hits
-    if (lethalTrue) 
+    if (lethal == true) 
         {
             System.out.println("");
             System.out.println("Lethal hits: " + lethals);
@@ -176,9 +163,12 @@ if (ability == 3)
     //end print lethal hits
 
     //print hazardus 
+    if (hazard == true) 
+    {
         System.out.println("");
         System.out.println("");
-        System.out.println("Pass Hazard save? " + hazardus);
+        System.out.println("Pass Hazard save? " + hazard);
+    }
     //print hazardus
     success[0] = success[0] + lethals;
 
