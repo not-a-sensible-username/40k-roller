@@ -29,8 +29,6 @@ public class Uppies
 
     public int[] Checking()
     {
-        
-        boolean nutin = choices.get(0);
         boolean lethal = choices.get(1);
         boolean rapid = choices.get(2);
         boolean blast = choices.get(3);
@@ -39,13 +37,11 @@ public class Uppies
         success[0] = 0;
 
         ArrayList<Integer> newDiceSus = new ArrayList<>();
-        int abilitySub = 0;
 
         //lethal hits
         int lethals = success[1];
-        if (success[1] > 0) 
-            {
-                lethal = true; //makes it so that lethals is enabled
+        if (success[1] > lethals) 
+            {//makes it so that lethals is enabled
             } 
         //lethal hits
 
@@ -98,7 +94,6 @@ public class Uppies
                     Rolling rollingSus = new Rolling(AmountSus, new ArrayList<>()); // rolling the sustained dice
                     newDiceSus.addAll(rollingSus.getDice()); //putting the rolled sustained dice in a previously defined list
         }
-    
 
 //end method for sustained hits
 

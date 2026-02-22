@@ -125,8 +125,12 @@ public class Main
         uppieHit.Checking();
         int[] success = uppieHit.getSuccess();
         System.out.println("");
-        System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
 
+        System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
+        if (subAbility2 == true) 
+            {
+                ability = 2;
+            }
         subAbility1 = false;
         subAbility2 = false;
         subAbility3 = false;
@@ -135,11 +139,9 @@ public class Main
         subAbility6 = false;
         abilities.remove(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
         abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
-
         //wound
         if (ability == 2) //if lethal hits
             {
-                
                 Scanner woundRoll = new Scanner(System.in);
                 System.out.println("Wound roll?");
                 int upOnWound = woundRoll.nextInt();
