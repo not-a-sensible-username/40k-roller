@@ -34,8 +34,10 @@ public class Uppies
         boolean blast = choices.get(3);
         boolean hazard = choices.get(4);
         boolean sustain = choices.get(5);
-        success[0] = 0;
 
+
+        success[0] = 0;
+        
         ArrayList<Integer> newDiceSus = new ArrayList<>();
 
         //lethal hits
@@ -153,7 +155,6 @@ if (rapid == true)
     if (lethal == true) 
         {
             System.out.println("");
-            System.out.println("Lethal hits: " + lethals);
         }
     //end print lethal hits
 

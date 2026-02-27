@@ -109,7 +109,6 @@ public class Main
             }
             abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
 
-        //dice amount
         Scanner howMany = new Scanner(System.in);
         System.out.println("How many dice?");
         int diceNumber = howMany.nextInt();
@@ -137,7 +136,7 @@ public class Main
         subAbility4 = false;
         subAbility5 = false;
         subAbility6 = false;
-        abilities.remove(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
+        abilities.remove(subAbility1); abilities.remove(subAbility2); abilities.remove(subAbility3); abilities.remove(subAbility4); abilities.remove(subAbility5); abilities.remove(subAbility6);
         abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
         //wound
         if (ability == 2) //if lethal hits
@@ -152,12 +151,18 @@ public class Main
                 System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
             }       //end of if thetal hits
             else {
+              
         Scanner woundRoll = new Scanner(System.in);
+                
         System.out.println("Wound roll?");
+                
         int upOnWound = woundRoll.nextInt();
+              
         Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0}, abilities);
+            
         uppieWound.Checking();
         success = uppieWound.getSuccess();
+            
         System.out.println("");
         System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
             }
