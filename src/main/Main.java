@@ -1,5 +1,13 @@
+package main;
+
+//Java Library Imports
 import java.util.Scanner;
 import java.util.ArrayList;
+
+//Project Imports
+import utils.Uppies;
+import utils.Rolling;
+
 
 /*
 
