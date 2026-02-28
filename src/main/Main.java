@@ -34,10 +34,25 @@ public class Main
     
     //Methods - START
     
-    public static int nextInt(final Scanner oneScannerToRuleThemAll){
-        int returnable = oneScannerToRuleThemAll.nextInt();
-        return returnable;
+    /**
+     *
+     *
+     */
+    public static int nextInt(Scanner oneScannerToRuleThemAll){
+        try{
+            int returnable = oneScannerToRuleThemAll.nextInt();
+            return returnable;
+        } catch(Exception e){
+            System.out.println("\n\nSomething Went Wrong\n\n");
+            oneScannerToRuleThemAll.close();
+            System.exit(0);
+            return -1;
+        }
+
     }
+
+
+   
 
 
     //Methods - END
@@ -47,29 +62,48 @@ public class Main
 
 
 
-
+    /**
+     *
+     */
     public static void main(String[] args) 
     {
+        //The Main Scanner for the entire application
         Scanner sc = new Scanner(System.in);
         
+
+        //this number (hitOrSave) is initialized here, it represents the three possible options for the aplication
+        //With a value of 0 it exits the application
+        //With a value of 1 it does hit stuff
+        //With a value of 2 it does save stuff
+        int hitOrSave;
        
 
 
 
         while (true) 
         {
+            
+            //Gives the 3 main options to the user
+            System.out.println("0) Exit Application");
+            System.out.println("or");
+            System.out.println("1) Hit");
+            System.out.println("or"); 
+            System.out.println("2) save");
+            
 
-        
-            System.out.println("1) Hit"); System.out.println("or"); System.out.println("2) save");
-        
-            int hitOrSave = nextInt(sc);
-        
+            //sets a value for hitOrSave, the number taht chooses which of the 3 options gets execute
+            hitOrSave = nextInt(sc);
 
-            if (hitOrSave == 1) 
+
+            if (hitOrSave == 0){
+                System.out.println("\n\nGoodbye!\n\n");
+                sc.close();
+                System.exit(0);
+            }
+            else if (hitOrSave == 1) 
             {
 
                 //ability
-                Scanner bility = new Scanner(System.in); // Scanner used for press enter scanner
         
                 int ability = -1;
 
@@ -80,16 +114,28 @@ public class Main
                 boolean subAbility5 = false;
                 boolean subAbility6 = false;
         
-                ArrayList<Boolean> abilities = new ArrayList<>(); //purpose:
+                ArrayList<Boolean> abilities = new ArrayList<>(); //purpose: to keep track of the subAbilities I think, I'm gonna rework it
         
 
                 //While Loop Purpose: 
                 while (ability != 1) 
                 {
-                    bility = new Scanner(System.in); //HUH???????
-                    System.out.println("Active Ability:");
+
+
                     
-                    //checks for nutin
+                    //Checks if program is to be exited ~ TEXT SELECT
+                    if (ability == 0)
+                    {
+                        sc.close();
+                        System.exit(0);
+                    }
+
+
+                    System.out.println("Active Ability:");
+                    System.out.println("0)Exit Program");  
+
+
+                    //checks for nutin ~ TEXT SELECT
                     if (subAbility1 == false)
                     {
                         System.out.println("1)'Nutin?'");
@@ -99,7 +145,7 @@ public class Main
                         System.out.println("1)No other abilities");
                     }
 
-                    //checks for lethatl hits
+                    //checks for lethatl hits ~ TEXT SELECT
                     if (ability != 2)
                     { 
                         if (subAbility2 == false)
@@ -113,7 +159,7 @@ public class Main
                     }
 
                     
-                    //checks for rapid fire
+                    //checks for rapid fire ~ TEXT SELECT
                     if (ability != 3)
                     {
                         if (subAbility3 == false)
@@ -128,7 +174,7 @@ public class Main
             
 
 
-                    //checks for blast
+                    //checks for blast ~ TEXT SELECT
                     if (ability != 4)
                     {
                     if (subAbility4 == false)
@@ -170,6 +216,14 @@ public class Main
                         subAbility6 = true;
                     }
 
+
+                    //checks for exiting program ~ TEXT SELECT
+                    if (ability == 0)
+                    {
+                        sc.close();
+                        System.exit(0);
+                    }
+
                     ability = nextInt(sc);
 
                 
@@ -180,33 +234,6 @@ public class Main
 
 
 
-
-
-
-
-
-
-
-
-
-
-                //TEMP CLOSE POINT - START
-                if (1 == 1){
-                
-                
-                
-                    sc.close();
-                
-                    break;
-                }
-                //TEMP CLOSE POINT - end
-
-
-
-
-
-
-            
                 abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
 
         
@@ -293,7 +320,7 @@ public class Main
         
         
             } 
-            else 
+            else if( hitOrSave == 2)
             {
             
             
@@ -354,6 +381,10 @@ public class Main
             
                 }
 
+            }
+            else
+            {
+                System.out.println("Please Pick an option");
             }
 
         } 
