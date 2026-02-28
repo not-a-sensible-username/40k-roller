@@ -3,9 +3,7 @@
 
 <h2>Links</h2>
 <p>
-[To Do List](ToDo.md) <br>
-<a href="ToDo.md">To Do</a> <br>
-[Google](https://www.google.com)
+<a href="ToDo.md">To Do List</a> <br>
 </p>
 
 <h2>Description:</h2>

@@ -26,6 +26,10 @@
 
 <h3>UppiesTest</h3>
 <p>
+- lethalHits() Testing<br>
+* <br>
+<br>
+
 
 
 </p>
