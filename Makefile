@@ -23,7 +23,7 @@ docs: clearD
 	javadoc src/**/*.java -d docs
 
 #clears both the bin and the docs
-clear: clearB clearD
+clear: clearB 
 	
 #clears the bin	
 clearB:
