@@ -39,7 +39,7 @@ This project's goal is to build a specialized dice roller command line applicati
 
 <h2>Makefile Commands;</h2>
 <p>
-To run a "make" command, go to the working directory (the one with the Makefile), and type out "make <COMMAND>" replacing <COMMAND> with the command you want or no command to run default <br> 
+To run a "make" command, go to the working directory (the one with the Makefile), and type out "make COMMAND" replacing COMMAND with the command you want or no command to run default <br> 
 <br>
 -Make commands: <br>
 * default ~ runs if given no command, runs the build command <br>
