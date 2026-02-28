@@ -5,40 +5,70 @@ import java.util.ArrayList;
 
 
 /**
- *
- *
+ * The Rolling class is used for generating and manipulating a large amount of randomly generated numbers from 1-6 or 1-3
  */
 public class Rolling 
 {
-    private Random random = new Random();
+    private Random random; // generates random numbers
 
-    private ArrayList<Integer> diceResults = new ArrayList<>(); // this is also kinda pointless, it should be made in the getDice function to make the function static
-    
-
-    private int diceRollAmount; //this variable is kinda pointless, it should be an argument to the getDice function
+    private ArrayList<Integer> diceResults = new ArrayList<>(); //TO BE PHASED OUT    
+    private int diceRollAmount; // To be phased out
     
     /**
-     * USELESS CONSTRUCTOR -- refigure class to get rid of it later
+     * TO BE PHASED OUT 
      */
     public Rolling(int diceRollAmount, ArrayList<Integer> diceType) 
     {
+        this.random = new Random();
         this.diceRollAmount = diceRollAmount;
         this.diceResults = diceType;
     }
-    
+
+
 
     /**
-     *This method returns an array of results, from the rolling  of a given amount of dice (given in constructor, might try and change later)
-     *@return an array of d6 dice roll results
+     *The Main Constructor for the Rolling Class, initializes random
      */
+    public Rolling()
+    {   
+        this.random = new Random();
+        this.diceRollAmount = 0;
+    }
+    
+
+
+
+    /**
+     *TO BE PHASED OUT
+     * */
     public ArrayList<Integer> getDice() 
     {
         
         for (int i = 0; i < diceRollAmount; i++) 
         {
-        int diceRoll = random.nextInt(6) + 1;
+            int diceRoll = random.nextInt(6) + 1;
             diceResults.add(diceRoll);
         }
         return diceResults; 
+    }
+
+
+
+
+    /**
+     *@Param diceAmount
+     *
+     */
+    public ArrayList<Integer> getDice(final int diceAmount){
+        ArrayList<Integer> returnable = new ArrayList<Integer>();
+        int temp;
+        for(int i = 0; i < diceAmount; i++)
+        {
+            temp = (this.random).nextInt(6) + 1;
+            returnable.add(temp);
+        }
+
+        return returnable;
+
     }
 }
