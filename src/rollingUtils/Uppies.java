@@ -1,4 +1,4 @@
-package utils;
+package rollingUtils;
 
 import java.util.ArrayList;
 import java.util.Scanner;

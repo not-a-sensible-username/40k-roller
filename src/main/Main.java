@@ -5,8 +5,12 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 //Project Imports
-import utils.Uppies;
-import utils.Rolling;
+import rollingUtils.Uppies;
+import rollingUtils.Rolling;
+
+//Emmett's  Dev Notes (DN)
+//DN1 - Why is it so nested :(
+//DN2 - redundant scanners - sixOrSeven, bility
 
 
 /*
@@ -27,41 +31,75 @@ The program will then wait for the next round and do it again.
 */
 public class Main 
 {
+    
+    //Methods - START
+    
+    public static int nextInt(final Scanner oneScannerToRuleThemAll){
+        return oneScannerToRuleThemAll.nextInt();
+    }
+
+
+    //Methods - END
+
+
+
+
+
+
+
     public static void main(String[] args) 
     {
-     int continuous = 0;
-     while (continuous == 0) 
-     {
-        Scanner sixOrSeven = new Scanner(System.in);
-        System.out.println("1) Hit"); System.out.println("or"); System.out.println("2) save");
-        int hitOrSave = sixOrSeven.nextInt();
 
-        if (hitOrSave == 1) 
+        //Initialization Fields1 - START
+        Scanner sc = new Scanner(System.in); //a scanner for the console, to be used wherever necessary
+        //Initialization Fields1 - END
+
+
+
+
+        while (true) 
         {
+        
+            System.out.println("1) Hit"); System.out.println("or"); System.out.println("2) save");
+        
+            int hitOrSave = nextInt(sc);
+        
 
-        //ability
-        Scanner bility = new Scanner(System.in);
-        int ability = 0;
-        boolean subAbility1 = false;
-        boolean subAbility2 = false;
-        boolean subAbility3 = false;
-        boolean subAbility4 = false;
-        boolean subAbility5 = false;
-        boolean subAbility6 = false;
-        ArrayList<Boolean> abilities = new ArrayList<>();
-        while (ability != 1) 
+            if (hitOrSave == 1) 
             {
-                bility = new Scanner(System.in);
-                System.out.println("Active Ability:");
+
+                //ability
+                Scanner bility = new Scanner(System.in); // Scanner used for press enter scanner
+        
+                int ability = 0;
+
+                boolean subAbility1 = false;
+                boolean subAbility2 = false;
+                boolean subAbility3 = false;
+                boolean subAbility4 = false;
+                boolean subAbility5 = false;
+                boolean subAbility6 = false;
+        
+                ArrayList<Boolean> abilities = new ArrayList<>(); //purpose:
+        
+
+                //While Loop Purpose: 
+                while (ability != 1) 
+                {
+                    bility = new Scanner(System.in); //HUH???????
+                    System.out.println("Active Ability:");
             
-                        if (subAbility1 == false)
-                            {
-                            System.out.println("1)'Nutin?'");
-                            }
-                        if (subAbility1 == true)
-                            {
-                            System.out.println("1)No other abilities");
-                            }
+                    if (subAbility1 == false)
+                    {
+                        System.out.println("1)'Nutin?'");
+                    }
+
+                    if (subAbility1 == true)
+                    {
+                        System.out.println("1)No other abilities");
+                    }
+
+
               if (ability != 2)
                 { 
                     if (subAbility2 == false)
