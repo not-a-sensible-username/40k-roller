@@ -35,7 +35,8 @@ public class Main
     //Methods - START
     
     public static int nextInt(final Scanner oneScannerToRuleThemAll){
-        return oneScannerToRuleThemAll.nextInt();
+        int returnable = oneScannerToRuleThemAll.nextInt();
+        return returnable;
     }
 
 
@@ -49,16 +50,15 @@ public class Main
 
     public static void main(String[] args) 
     {
-
-        //Initialization Fields1 - START
-        Scanner sc = new Scanner(System.in); //a scanner for the console, to be used wherever necessary
-        //Initialization Fields1 - END
-
+        Scanner sc = new Scanner(System.in);
+        
+       
 
 
 
         while (true) 
         {
+
         
             System.out.println("1) Hit"); System.out.println("or"); System.out.println("2) save");
         
@@ -71,7 +71,7 @@ public class Main
                 //ability
                 Scanner bility = new Scanner(System.in); // Scanner used for press enter scanner
         
-                int ability = 0;
+                int ability = -1;
 
                 boolean subAbility1 = false;
                 boolean subAbility2 = false;
@@ -176,15 +176,44 @@ public class Main
                     subAbility1 = true;
             
                 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                //TEMP CLOSE POINT - START
+                if (1 == 1){
+                
+                
+                
+                    sc.close();
+                
+                    break;
+                }
+                //TEMP CLOSE POINT - end
+
+
+
+
+
+
             
                 abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
 
         
-                Scanner howMany = new Scanner(System.in);
         
                 System.out.println("How many dice?");
         
-                int diceNumber = howMany.nextInt();
+                int diceNumber = nextInt(sc);
 
         
                 Uppies hitType = new Uppies(0, ability, new int[]{0, 0}, abilities);
@@ -194,11 +223,10 @@ public class Main
         
                 //hit
         
-                Scanner hitRoll = new Scanner(System.in); 
         
                 System.out.println("Hit roll?");
         
-                int upOnHit = hitRoll.nextInt();
+                int upOnHit = nextInt(sc);
         
                 Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{ability, 0}, abilities);
         
@@ -229,9 +257,8 @@ public class Main
                 //wound
                 if (ability == 2) //if lethal hits
                 {
-                    Scanner woundRoll = new Scanner(System.in);
                     System.out.println("Wound roll?");
-                    int upOnWound = woundRoll.nextInt();
+                    int upOnWound = nextInt(sc);
                     Uppies uppieWound = new Uppies(success[0] - success[1], upOnWound, new int[]{0, success[1]}, abilities);
                     uppieWound.Checking();
                     success = uppieWound.getSuccess();
@@ -243,13 +270,11 @@ public class Main
                 {
               
         
-                    Scanner woundRoll = new Scanner(System.in);
-                
         
                     System.out.println("Wound roll?");
                 
         
-                    int upOnWound = woundRoll.nextInt();
+                    int upOnWound = nextInt(sc);
               
         
                     Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0}, abilities);
@@ -271,31 +296,25 @@ public class Main
             else 
             {
             
-                Scanner howMany = new Scanner(System.in);
             
                 System.out.println("How many dice?");
             
-                int diceNumber = howMany.nextInt();
+                int diceNumber = nextInt(sc);
 
-                Scanner saveRoll = new Scanner(System.in);
             
                 System.out.println("save Roll?");
             
-                int upOnSave = saveRoll.nextInt();
+                int upOnSave = nextInt(sc);
 
             
-                Scanner perDice = new Scanner(System.in);
             
                 System.out.println("Damage Per Dice?");
             
-                int damPerDice = perDice.nextInt();
-
-            
-                Scanner noPain = new Scanner(System.in);
+                int damPerDice = nextInt(sc);
             
                 System.out.println("Feel No Pain?"); System.out.println("1) yes"); System.out.println("2) no");
             
-                int feelNoPain = noPain.nextInt();
+                int feelNoPain = nextInt(sc);
 
             
                 Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0},  new ArrayList<>());
@@ -308,13 +327,12 @@ public class Main
             
                 {
                 
-                    Scanner fNoPain = new Scanner(System.in);
                 
                     System.out.println("");
                 
                     System.out.println("FeelNoPain Save?");
                 
-                    int FoPain = noPain.nextInt();
+                    int FoPain = nextInt(sc);
 
                 
                     Uppies uppieNoPain = new Uppies(diceNumber, upOnSave, new int[]{FoPain, damPerDice},  new ArrayList<>());
