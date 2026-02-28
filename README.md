@@ -1,6 +1,11 @@
 <h1>40k Dice Roller Command Line Applicaion Github Repo</h1>
 
 
+<h2>Links</h2>
+<p>
+![To Do List](ToDo.md)
+</p>
+
 <h2>Description:</h2>
 
 
