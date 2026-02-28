@@ -2,9 +2,8 @@
 
 
 <h2>Links</h2>
-<p>
 ![To Do List](ToDo.md)
-</p>
+
 
 <h2>Description:</h2>
 
