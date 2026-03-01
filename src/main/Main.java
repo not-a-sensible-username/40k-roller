@@ -7,10 +7,8 @@ import java.util.ArrayList;
 //Project Imports
 import rollingUtils.Uppies;
 import rollingUtils.Rolling;
+import scannerUtils.SuperScanner;
 
-//Emmett's  Dev Notes (DN)
-//DN1 - Why is it so nested :(
-//DN2 - redundant scanners - sixOrSeven, bility
 
 
 /*
@@ -34,10 +32,7 @@ public class Main
     
     //Methods - START
     
-    public static int nextInt(final Scanner oneScannerToRuleThemAll){
-        int returnable = oneScannerToRuleThemAll.nextInt();
-        return returnable;
-    }
+   
 
 
     //Methods - END
@@ -50,9 +45,8 @@ public class Main
 
     public static void main(String[] args) 
     {
-        Scanner sc = new Scanner(System.in);
-        Rolling roller = new Rolling();
-        
+       
+        SuperScanner scc = new SuperScanner();
         
        
 
@@ -61,11 +55,22 @@ public class Main
         while (true) 
         {
 
+            System.out.println("0) Exit");
+            System.out.println("or");
+            System.out.println("1) Hit"); 
+            System.out.println("or"); 
+            System.out.println("2) save");
         
-            System.out.println("1) Hit"); System.out.println("or"); System.out.println("2) save");
+            int hitOrSave = scc.nextInt();
         
-            int hitOrSave = nextInt(sc);
-        
+            
+            if (hitOrSave == 0)
+            {
+                scc.close();
+             
+                System.exit(0);
+            }
+
 
             if (hitOrSave == 1) 
             {
@@ -170,7 +175,7 @@ public class Main
                         subAbility6 = true;
                     }
 
-                    ability = nextInt(sc);
+                    ability = scc.nextInt();
 
                 
                     subAbility1 = true;
@@ -187,25 +192,6 @@ public class Main
 
 
 
-
-
-
-                //TEMP CLOSE POINT - START
-                if (1 == 1){
-                
-                
-                
-                    sc.close();
-                
-                    break;
-                }
-                //TEMP CLOSE POINT - end
-
-
-
-
-
-
             
                 abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
 
@@ -213,7 +199,7 @@ public class Main
         
                 System.out.println("How many dice?");
         
-                int diceNumber = nextInt(sc);
+                int diceNumber = scc.nextInt();
 
         
                 Uppies hitType = new Uppies(0, ability, new int[]{0, 0}, abilities);
@@ -226,7 +212,7 @@ public class Main
         
                 System.out.println("Hit roll?");
         
-                int upOnHit = nextInt(sc);
+                int upOnHit = scc.nextInt();
         
                 Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{ability, 0}, abilities);
         
@@ -258,7 +244,7 @@ public class Main
                 if (ability == 2) //if lethal hits
                 {
                     System.out.println("Wound roll?");
-                    int upOnWound = nextInt(sc);
+                    int upOnWound = scc.nextInt();
                     Uppies uppieWound = new Uppies(success[0] - success[1], upOnWound, new int[]{0, success[1]}, abilities);
                     uppieWound.Checking();
                     success = uppieWound.getSuccess();
@@ -274,7 +260,7 @@ public class Main
                     System.out.println("Wound roll?");
                 
         
-                    int upOnWound = nextInt(sc);
+                    int upOnWound = scc.nextInt();
               
         
                     Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0}, abilities);
@@ -299,22 +285,22 @@ public class Main
             
                 System.out.println("How many dice?");
             
-                int diceNumber = nextInt(sc);
+                int diceNumber = scc.nextInt();
 
             
                 System.out.println("save Roll?");
             
-                int upOnSave = nextInt(sc);
+                int upOnSave = scc.nextInt();
 
             
             
                 System.out.println("Damage Per Dice?");
             
-                int damPerDice = nextInt(sc);
+                int damPerDice = scc.nextInt();
             
                 System.out.println("Feel No Pain?"); System.out.println("1) yes"); System.out.println("2) no");
             
-                int feelNoPain = nextInt(sc);
+                int feelNoPain = scc.nextInt();
 
             
                 Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0},  new ArrayList<>());
@@ -332,7 +318,7 @@ public class Main
                 
                     System.out.println("FeelNoPain Save?");
                 
-                    int FoPain = nextInt(sc);
+                    int FoPain = scc.nextInt();
 
                 
                     Uppies uppieNoPain = new Uppies(diceNumber, upOnSave, new int[]{FoPain, damPerDice},  new ArrayList<>());
