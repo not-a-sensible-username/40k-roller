@@ -24,8 +24,8 @@ public class Uppies
         this.choices = choices;
         
 
-        Rolling rolling = new Rolling(diceNumber, new ArrayList<>());
-        diceResults = rolling.getDice();
+        Rolling rolling = new Rolling();
+        diceResults = rolling.getDice(diceNumber);
     }
 
 
@@ -74,8 +74,8 @@ public class Uppies
         if (hazard == true) 
         {
                 ArrayList<Integer> hazDie = new ArrayList<>();
-                Rolling rolling = new Rolling(1, new ArrayList<>()); //rolls number of dice equal to blast
-                hazDie.addAll(rolling.getDice()); //puts hazdie into list
+                Rolling rolling = new Rolling();
+                diceResults = rolling.getDice(diceNumber);
                 if (hazDie.get(0) == 1) 
                 {
                     hazard = true;
@@ -93,8 +93,8 @@ public class Uppies
         Scanner howMany = new Scanner(System.in);
         System.out.println("How many models in enemy unit?");
         blastNumber = howMany.nextInt() / 5; //number of enemy models in enemy unit
-        Rolling rolling = new Rolling(blastNumber, new ArrayList<>()); //rolls number of dice equal to blast
-        newDiceBlast.addAll(rolling.getDice()); //puts the blast number into a list
+        Rolling rolling = new Rolling();
+        diceResults = rolling.getDice(blastNumber);
         diceResults.addAll(newDiceBlast); //adding the blast list into the total rolls
         }
         //method for blast
@@ -118,8 +118,8 @@ public class Uppies
             if (sustain == true) //if ability is sustained
         {
                     AmountSus = AmountSus * AmountMod; //sustained amount times the sustained modifieer
-                    Rolling rollingSus = new Rolling(AmountSus, new ArrayList<>()); // rolling the sustained dice
-                    newDiceSus.addAll(rollingSus.getDice()); //putting the rolled sustained dice in a previously defined list
+                    Rolling rolling = new Rolling();
+                    diceResults = rolling.getDice(AmountSus);
         }
 
 //end method for sustained hits
@@ -137,9 +137,9 @@ if (rapid == true)
 
         int rapidFiredDice = rapidF * weponCount; //number of rapidFireDice 
 
-        Rolling rollingRapid = new Rolling(rapidFiredDice, new ArrayList<>()); // list of all the rapidFireDice
+        Rolling rolling = new Rolling(); // list of all the rapidFireDice
 
-        diceResults.addAll(rollingRapid.getDice()); //adding the reapid fire dice to the base dicelist
+        diceResults = rolling.getDice(diceNumber);//adding the reapid fire dice to the base dicelist
     }
 //end method for rapid fire
 
@@ -229,8 +229,8 @@ if (rapid == true)
         int diceSaver = success[0]; //4
         success[0] = success[0] * success[1]; //8
         System.out.println("");
-        Rolling rollin = new Rolling(success[0], new ArrayList<>());
-        diceResults = rollin.getDice();
+        Rolling rolling = new Rolling();
+        diceResults = rolling.getDice(success[0]);
         int diceAmount = 0;
         System.out.print("P: ");
         for (int i = 0; i < success[0]; i++) //8

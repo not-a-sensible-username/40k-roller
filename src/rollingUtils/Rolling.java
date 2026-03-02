@@ -11,19 +11,6 @@ public class Rolling
 {
     private Random random; // generates random numbers
 
-    private ArrayList<Integer> diceResults = new ArrayList<>(); //TO BE PHASED OUT    
-    private int diceRollAmount; // To be phased out
-    
-    /**
-     * TO BE PHASED OUT 
-     */
-    public Rolling(int diceRollAmount, ArrayList<Integer> diceType) 
-    {
-        this.random = new Random();
-        this.diceRollAmount = diceRollAmount;
-        this.diceResults = diceType;
-    }
-
 
 
     /**
@@ -32,27 +19,8 @@ public class Rolling
     public Rolling()
     {   
         this.random = new Random();
-        this.diceRollAmount = 0;
     }
     
-
-
-
-    /**
-     *TO BE PHASED OUT
-     * */
-    public ArrayList<Integer> getDice() 
-    {
-        
-        for (int i = 0; i < diceRollAmount; i++) 
-        {
-            int diceRoll = random.nextInt(6) + 1;
-            diceResults.add(diceRoll);
-        }
-        return diceResults; 
-    }
-
-
 
 
     /**
