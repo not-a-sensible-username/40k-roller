@@ -1,15 +1,21 @@
+package rollingUtils;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Uppies 
 {
-    int diceNumber;
+    int diceNumber; // TO BE PHASED OUT
     int check;
     int[] success;
     ArrayList<Boolean> choices;
     ArrayList<Integer> diceResults;
 
+    Rolling roller;
 
+    /**
+     *To Be Phased Out
+     */
     public Uppies(int diceNumber, int check, int[] success, ArrayList<Boolean> choices) 
     {
         this.diceNumber = diceNumber;
@@ -22,11 +28,28 @@ public class Uppies
         diceResults = rolling.getDice();
     }
 
+
+    public Uppies()
+    {
+        this.roller = new Rolling();
+    }
+    
+
+
+
+
+
+    //METHODS
+
+
     public int abilities()
     {
-        return check;
+        return this.check;
     }
 
+
+
+    //This is a whole ass thing - rework completely
     public int[] Checking()
     {
         boolean lethal = choices.get(1);
@@ -40,28 +63,30 @@ public class Uppies
         
         ArrayList<Integer> newDiceSus = new ArrayList<>();
 
-        //lethal hits
+        //lethal hits - START
         int lethals = success[1];
-        if (success[1] > lethals) 
+        if (success[1] > lethals) //If Statement does Nothing?? 
             {//makes it so that lethals is enabled
             } 
-        //lethal hits
+        //lethal hits - END
 
         //method for hazardus
         if (hazard == true) 
-            {
+        {
                 ArrayList<Integer> hazDie = new ArrayList<>();
                 Rolling rolling = new Rolling(1, new ArrayList<>()); //rolls number of dice equal to blast
                 hazDie.addAll(rolling.getDice()); //puts hazdie into list
                 if (hazDie.get(0) == 1) 
-                    {
-                        hazard = true;
-                    }
+                {
+                    hazard = true;
+                }
+            
+        }
 
-            }
 
-            //method for blast
-        int blastNumber = 0;
+
+            //method for blast ~ THEN MAKE IT A METHOD!!
+            int blastNumber = 0;
         ArrayList<Integer> newDiceBlast = new ArrayList<>();
 
         if (blast == true) {
@@ -226,6 +251,9 @@ if (rapid == true)
         success[0] = diceSaver; //7 = 4
         return success;
     }
+
+
+    //returns success
     public int[] getSuccess()
     {
         return success;
