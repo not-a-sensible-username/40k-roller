@@ -1,12 +1,10 @@
 package main;
 
 //Java Library Imports
-import java.util.Scanner;
 import java.util.ArrayList;
 
 //Project Imports
 import rollingUtils.Uppies;
-import rollingUtils.Rolling;
 import scannerUtils.SuperScanner;
 
 
@@ -29,17 +27,6 @@ The program will then wait for the next round and do it again.
 */
 public class Main 
 {
-    
-    //Methods - START
-    
-   
-
-
-    //Methods - END
-
-
-
-
 
 
 
@@ -74,179 +61,119 @@ public class Main
 
             if (hitOrSave == 1) 
             {
-
                 //ability
-        
-                int ability = -1;
+                int ability = 80085;
 
-                boolean subAbility1 = false;
-                boolean subAbility2 = false;
-                boolean subAbility3 = false;
-                boolean subAbility4 = false;
-                boolean subAbility5 = false;
-                boolean subAbility6 = false;
-        
-                ArrayList<Boolean> abilities = new ArrayList<>(); //purpose:
-        
-
-                //While Loop Purpose: 
+                ArrayList<Integer> abilityArray = new ArrayList<>();
+                //While Loop Purpose: to say what abilities for the dice are chosen
                 while (ability != 1) 
                 {
                     System.out.println("Active Ability:");
-                    
                     //checks for nutin
-                    if (subAbility1 == false)
-                    {
                         System.out.println("1)'Nutin?'");
-                    }
-                    if (subAbility1 == true)
-                    {
-                        System.out.println("1)No other abilities");
-                    }
-
+                    
                     //checks for lethatl hits
-                    if (ability != 2)
+                    if (ability == 2)
                     { 
-                        if (subAbility2 == false)
-                        {
-                            System.out.println("2)Lethal Hits:");
-                        }
+                        abilityArray.add(2);  
+                    } else {
+                        System.out.println("2)Lethal Hits:");
                     }
-                    else 
-                    {
-                        subAbility2 = true;
-                    }
+                    
 
                     
                     //checks for rapid fire
-                    if (ability != 3)
-                    {
-                        if (subAbility3 == false)
-                        {
-                            System.out.println("3)Rapid Fire:");
-                        } 
-                    } 
-                    else 
-                    {
-                        subAbility3 = true;
-                    }
+                    if (ability == 3)
+                        { 
+                            abilityArray.add(3);  
+                        } else {
+                            System.out.println("3)rapid fire:");
+                        }
             
-
-
                     //checks for blast
-                    if (ability != 4)
-                    {
-                    if (subAbility4 == false)
-                        {
+                    if (ability == 4)
+                        { 
+                            abilityArray.add(4);  
+                        } else {
                             System.out.println("4)Blast:");
                         }
-                    } 
-                    else 
-                    {
-                        subAbility4 = true;
-                    }
-
 
                     //checks for Hazardus ~ TEXT SELECT
-                    if (ability != 5)
-                    {
-                        if (subAbility5 == false)
-                        {
-                            System.out.println("5)Hazardus:"); 
+                    if (ability == 5)
+                        { 
+                            abilityArray.add(5);  
+                        } else {
+                            System.out.println("5)Hazardus");
                         }
-                    } 
-                    else 
-                    {
-                        subAbility5 = true;
-                    }
 
 
 
                     //checks for sustained hits ~ TEXT SELECT
-                    if (ability != 6)
-                    {
-                        if (subAbility6 == false)
-                        {
-                            System.out.println("6)Sustained Hits:");
+                    if (ability == 6)
+                        { 
+                            abilityArray.add(6);  
+                        } else {
+                            System.out.println("6)Sustained hits:");
                         }
-                    } 
-                    else 
-                    {
-                        subAbility6 = true;
-                    }
-
-                    ability = scc.nextInt();
-
-                
-                    subAbility1 = true;
-            
+                        ability = scc.nextInt();
                 }
 
-
-
-
-
-
-
-
-
-
-
-            
-                abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
-
         
-        
-                System.out.println("How many dice?");
-        
-                int diceNumber = scc.nextInt();
-
-        
-                Uppies hitType = new Uppies(0, ability, new int[]{0, 0}, abilities);
-        
-                ability = hitType.abilities();
-
         
                 //hit
-        
-        
-                System.out.println("Hit roll?");
-        
-                int upOnHit = scc.nextInt();
-        
-                Uppies uppieHit = new Uppies(diceNumber, upOnHit, new int[]{ability, 0}, abilities);
-        
-                uppieHit.Checking();
-        
-                int[] success = uppieHit.getSuccess();
-        
-                System.out.println("");
+                ArrayList<Integer> diceArray = new ArrayList<>();
+                System.out.println("How many dice?");
+                int diceNumber = scc.nextInt();
 
+                System.out.println("How many of this weapon?");
+                int weaponCount = scc.nextInt();
+
+                System.out.println("Hit roll?");
+                int hitroll = scc.nextInt();
         
+                Uppies uppieHit = new Uppies(diceNumber, hitroll, new int[]{ability, weaponCount});
+        
+                for(int i=0; i < abilityArray.size(); i++)
+                    {
+                        if (abilityArray.get(i) == 2)
+                            {
+                                
+                            }
+                        if (abilityArray.get(i) == 3)
+                            {
+    
+                            }
+                        if (abilityArray.get(i) == 4)
+                            {
+        
+                            }
+                        if (abilityArray.get(i) == 5)
+                            {
+        
+                            }
+                        if (abilityArray.get(i) == 6)
+                            {
+        
+                            }
+                    }
+                    if (abilityArray.size() == 0)
+                        {
+                           diceArray = uppieHit.getNutin();
+                        }
+
+                    
+                int[] success = uppieHit.getSuccess();
+                System.out.println();
+                System.out.println(diceArray);
+                System.out.println();
                 System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
-        
-                if (subAbility2 == true) 
             
-                {
-                
-                    ability = 2;
-            
-                }
-                subAbility1 = false;
-                subAbility2 = false;
-                subAbility3 = false;
-                subAbility4 = false;
-                subAbility5 = false;
-                subAbility6 = false;
-                abilities.remove(subAbility1); abilities.remove(subAbility2); abilities.remove(subAbility3); abilities.remove(subAbility4); abilities.remove(subAbility5); abilities.remove(subAbility6);
-                abilities.add(subAbility1); abilities.add(subAbility2); abilities.add(subAbility3); abilities.add(subAbility4); abilities.add(subAbility5); abilities.add(subAbility6);
-                //wound
                 if (ability == 2) //if lethal hits
                 {
                     System.out.println("Wound roll?");
                     int upOnWound = scc.nextInt();
-                    Uppies uppieWound = new Uppies(success[0] - success[1], upOnWound, new int[]{0, success[1]}, abilities);
-                    uppieWound.Checking();
+                    Uppies uppieWound = new Uppies(success[0] - success[1], upOnWound, new int[]{0, success[1]});
+                    uppieWound.getNutin();
                     success = uppieWound.getSuccess();
                     System.out.println("");
                     System.out.println("Go Through:" + success[0] + "     six:" + success[1]);
@@ -263,10 +190,10 @@ public class Main
                     int upOnWound = scc.nextInt();
               
         
-                    Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0}, abilities);
+                    Uppies uppieWound = new Uppies(success[0], upOnWound, new int[]{0, 0});
             
         
-                    uppieWound.Checking();
+                    uppieWound.getNutin();
         
                     success = uppieWound.getSuccess();
             
@@ -303,7 +230,7 @@ public class Main
                 int feelNoPain = scc.nextInt();
 
             
-                Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0},  new ArrayList<>());
+                Uppies uppieSave = new Uppies(diceNumber, upOnSave, new int[]{0, 0});
             
                 uppieSave.saveChecking();
             
@@ -321,7 +248,7 @@ public class Main
                     int FoPain = scc.nextInt();
 
                 
-                    Uppies uppieNoPain = new Uppies(diceNumber, upOnSave, new int[]{FoPain, damPerDice},  new ArrayList<>());
+                    Uppies uppieNoPain = new Uppies(diceNumber, upOnSave, new int[]{FoPain, damPerDice});
                 
                     
                     uppieNoPain.feelNoPain();
